@@ -46,7 +46,8 @@ int main(int argc, char* argv[]){
   gzrewind(fgzFile);
   Run *run = new Run();
 
-  if(n_lines == 39) PHSD_INPUT_VERSION = 5;
+  if(n_lines == 36) PHSD_INPUT_VERSION = 5;
+  else if(n_lines == 39) PHSD_INPUT_VERSION = 6;
   printf("PHSD input file format: %2d\n", PHSD_INPUT_VERSION);
   int   ival;
   float fval;
@@ -67,7 +68,7 @@ int main(int argc, char* argv[]){
   gzgets(fgzFile, fbuffer, 256); sscanf(fbuffer, "%d", &ival); run -> SetIdil(ival);
   gzgets(fgzFile, fbuffer, 256); sscanf(fbuffer, "%d", &ival); run -> SetICQ(ival);
   gzgets(fgzFile, fbuffer, 256); sscanf(fbuffer, "%d", &ival); run -> SetIHARD(ival);
-  if(PHSD_INPUT_VERSION == 5) { // IDQPM -- new version of the PHQMD
+  if(PHSD_INPUT_VERSION > 4) { // IDQPM -- new version of the PHQMD
     gzgets(fgzFile, fbuffer, 256);
     sscanf(fbuffer, "%d", &ival);
     run -> SetIDQPM(ival);
