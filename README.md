@@ -25,26 +25,26 @@ Events
    |-- fPsi[4]
    |-- fEcc[4]
    |-- particles[fNparticles]
-       |-- fID
-       |-- fPDG
-       |-- fCharge
-       |-- fChannel
-       |-- fBarDens
-       |-- fEnDens
-       |-- fIsInMst
-       |-- fR[4] (X, Y, Z, T)
-       |-- fP[4] (Px, Py, Pz, E)
+   |   |-- fID
+   |   |-- fPDG
+   |   |-- fCharge
+   |   |-- fChannel
+   |   |-- fBarDens
+   |   |-- fEnDens
+   |   |-- fIsInMst
+   |   |-- fR[4] (X, Y, Z, T)
+   |   |-- fP[4] (Px, Py, Pz, E)
    |-- mstbsteps[fNTSACA+1]
-       |-- fPHSD_POS
-       |-- fPDG
-       |-- fPHSD_ID
-       |-- fFID
-       |-- fFSIZE
-       |-- fPREG
-       |-- fPCH
-       |-- fEBND
-       |-- fR[4] (X, Y, Z, T)
-       |-- fP[4] (Px, Py, Pz, M)
+   |   |-- fPHSD_POS
+   |   |-- fPDG
+   |   |-- fPHSD_ID
+   |   |-- fFID
+   |   |-- fFSIZE
+   |   |-- fPREG
+   |   |-- fPCH
+   |   |-- fEBND
+   |   |-- fR[4] (X, Y, Z, T)
+   |   |-- fP[4] (Px, Py, Pz, M)
    |-- mstfsteps[fNTSACA+1]
        |-- fFID
        |-- fPDG
