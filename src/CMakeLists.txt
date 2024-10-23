@@ -17,14 +17,21 @@ target_link_libraries(phqmd2root PUBLIC PHQMDevent ZLIB::ZLIB ${ROOT_LIBRARIES} 
 add_executable(readphqmd readphqmd.cxx)
 target_link_libraries(readphqmd PUBLIC PHQMDevent ${ROOT_LIBRARIES} ${ROOT_EXE_LINKER_FLAGS})
 
+add_executable(phqmdtree2ascii phqmdtree2ascii.cxx)
+target_link_libraries(phqmdtree2ascii PUBLIC PHQMDevent ${ROOT_LIBRARIES} ${ROOT_EXE_LINKER_FLAGS})
 
 
-install(TARGETS PHQMDevent phqmd2root readphqmd
+
+install(TARGETS PHQMDevent phqmd2root readphqmd phqmdtree2ascii
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION bin
-        INCLUDES DESTINATION include
         )
-install(FILES 
+
+install(FILES
           ${CMAKE_CURRENT_BINARY_DIR}/libPHQMDevent_rdict.pcm
           ${CMAKE_CURRENT_BINARY_DIR}/libPHQMDevent.rootmap
         DESTINATION lib)
+
+install(FILES PHQMDevent.h
+        DESTINATION include)
+

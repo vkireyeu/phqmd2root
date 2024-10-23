@@ -44,8 +44,9 @@ namespace PHQMD{
 
 
   Fragment::Fragment(){
-    fFID      = 0;
-    fPDG      = 0;
+    fFID    = 0;
+    fPDG    = 0;
+    fStable = 0;
   }
 
   Fragment::Fragment(const Fragment& in){

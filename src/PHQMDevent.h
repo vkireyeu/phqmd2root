@@ -23,6 +23,11 @@
 #include <math.h>
 
 namespace PHQMD{
+  typedef std::vector<int>              ivec;
+  typedef ROOT::Math::XYZTVector    RTvector;
+  typedef ROOT::Math::PxPyPzEVector PEvector;
+  typedef ROOT::Math::PxPyPzMVector PMvector;
+
 
 /**  \class PHQMD::Particle
   PHQMD::Particle is a class to store the PHSD/PHQMD particle information ('phsd.dat' file analogue)
@@ -30,40 +35,40 @@ namespace PHQMD{
 */
   class Particle{
     private:
-      int                      fID; ///< Position in the PHSD vector
-      int                     fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
-      int                  fCharge; ///< Charge
-      int                 fChannel; ///< Production channel
-      float               fBarDens; ///< Baryonic density at the freeze-out time at the particle position
-      float                fEnDens; ///< Energy density at the freeze-out time at the particle position
-      bool                fIsInMst; ///< Flag to store the information about the particle's entrance into the MST clusterization
-      ROOT::Math::XYZTVector    fR; ///< Freeze-out coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
-      ROOT::Math::PxPyPzEVector fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      int        fID; ///< Position in the PHSD vector
+      int       fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
+      int    fCharge; ///< Charge
+      int   fChannel; ///< Production channel
+      float fBarDens; ///< Baryonic density at the freeze-out time at the particle position
+      float  fEnDens; ///< Energy density at the freeze-out time at the particle position
+      bool  fIsInMst; ///< Flag to store the information about the particle's entrance into the MST clusterization
+      RTvector    fR; ///< Freeze-out coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      PEvector    fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
 
     public:
       Particle(); ///< Default constructor
       virtual ~Particle(); ///< Default destructor
       Particle(const Particle& in); ///< Copy constructor
 
-      inline int                      GetId () const {return      fID;}
-      inline int                     GetPdg () const {return     fPDG;}
-      inline int                  GetCharge () const {return  fCharge;}
-      inline int                 GetChannel () const {return fChannel;}
-      inline float               GetBarDens () const {return fBarDens;}
-      inline float                GetEnDens () const {return  fEnDens;}
-      inline bool                   IsInMst () const {return fIsInMst;}
-      inline ROOT::Math::XYZTVector    GetR () const {return       fR;}
-      inline ROOT::Math::PxPyPzEVector GetP () const {return       fP;}
+      inline int        GetId () const {return      fID;}
+      inline int       GetPdg () const {return     fPDG;}
+      inline int    GetCharge () const {return  fCharge;}
+      inline int   GetChannel () const {return fChannel;}
+      inline float GetBarDens () const {return fBarDens;}
+      inline float  GetEnDens () const {return  fEnDens;}
+      inline bool     IsInMst () const {return fIsInMst;}
+      inline RTvector    GetR () const {return       fR;}
+      inline PEvector    GetP () const {return       fP;}
 
-      inline void SetId      (int                       val) {fID      = val;}
-      inline void SetPdg     (int                       val) {fPDG     = val;}
-      inline void SetCharge  (int                       val) {fCharge  = val;}
-      inline void SetChannel (int                       val) {fChannel = val;}
-      inline void SetBarDens (float                     val) {fBarDens = val;}
-      inline void SetEnDens  (float                     val) {fEnDens  = val;}
-      inline void SetInMst   (bool                      val) {fIsInMst = val;}
-      inline void SetR       (ROOT::Math::XYZTVector    val) {fR       = val;}
-      inline void SetP       (ROOT::Math::PxPyPzEVector val) {fP       = val;}
+      inline void SetId      (int      val) {fID      = val;}
+      inline void SetPdg     (int      val) {fPDG     = val;}
+      inline void SetCharge  (int      val) {fCharge  = val;}
+      inline void SetChannel (int      val) {fChannel = val;}
+      inline void SetBarDens (float    val) {fBarDens = val;}
+      inline void SetEnDens  (float    val) {fEnDens  = val;}
+      inline void SetInMst   (bool     val) {fIsInMst = val;}
+      inline void SetR       (RTvector val) {fR       = val;}
+      inline void SetP       (PEvector val) {fP       = val;}
   };
 
 
@@ -74,44 +79,44 @@ namespace PHQMD{
 */
   class Baryon {
     private:
-      int                fPHSD_POS; ///< Position of the corrsponding particle in the Event::particles vector
-      int                     fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
-      int                 fPHSD_ID; ///< Position in the PHSD vector
-      int                     fFID; ///< ID of the cluster, to which this baryon is assigned
-      int                   fFSIZE; ///< Size of the cluster, to which this baryon is assigned
-      int                    fPREG; ///< Production region of the baryon
-      int                     fPCH; ///< Production channel
-      float                  fEBND; ///< Binding energy per nuceon of the cluster, to which this baryon is assigned
-      ROOT::Math::XYZTVector    fR; ///< Coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
-      ROOT::Math::PxPyPzMVector fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      int fPHSD_POS; ///< Position of the corrsponding particle in the Event::particles vector
+      int      fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
+      int  fPHSD_ID; ///< Position in the PHSD vector
+      int      fFID; ///< ID of the cluster, to which this baryon is assigned
+      int    fFSIZE; ///< Size of the cluster, to which this baryon is assigned
+      int     fPREG; ///< Production region of the baryon
+      int      fPCH; ///< Production channel
+      float   fEBND; ///< Binding energy per nuceon of the cluster, to which this baryon is assigned
+      RTvector   fR; ///< Coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      PMvector   fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
 
     public:
       Baryon();
       virtual ~Baryon();
       Baryon(const Baryon& in);
 
-      inline int                 GetPhsdPos () const {return fPHSD_POS;}
-      inline int                     GetPdg () const {return      fPDG;}
-      inline int                  GetPhsdId () const {return  fPHSD_ID;}
-      inline int                     GetFid () const {return      fFID;}
-      inline int                    GetSize () const {return    fFSIZE;}
-      inline int              GetProdRegion () const {return     fPREG;}
-      inline int             GetProdChannel () const {return      fPCH;}
-      inline float                 GetEbind () const {return     fEBND;}
-      inline bool                   IsBound () const {return fEBND < -1E-5 ? 1 : 0;}
-      inline ROOT::Math::XYZTVector    GetR () const {return        fR;}
-      inline ROOT::Math::PxPyPzMVector GetP () const {return        fP;}
+      inline int     GetPhsdPos () const {return fPHSD_POS;}
+      inline int         GetPdg () const {return      fPDG;}
+      inline int      GetPhsdId () const {return  fPHSD_ID;}
+      inline int         GetFid () const {return      fFID;}
+      inline int        GetSize () const {return    fFSIZE;}
+      inline int  GetProdRegion () const {return     fPREG;}
+      inline int GetProdChannel () const {return      fPCH;}
+      inline float     GetEbind () const {return     fEBND;}
+      inline RTvector      GetR () const {return        fR;}
+      inline PMvector      GetP () const {return        fP;}
+      inline bool       IsBound () const {return fEBND < -1E-5 ? 1 : 0;}
 
-      inline void SetPhsdPos     (int                    val) {fPHSD_POS = val;}
-      inline void SetPdg         (int                    val) {fPDG      = val;}
-      inline void SetPhsdId      (int                    val) {fPHSD_ID  = val;}
-      inline void SetFid         (int                    val) {fFID      = val;}
-      inline void SetFsize       (int                    val) {fFSIZE    = val;}
-      inline void SetProdRegion  (int                    val) {fPREG     = val;}
-      inline void SetProdChannel (int                    val) {fPCH      = val;}
-      inline void SetEbind       (float                  val) {fEBND     = val;}
-      inline void SetR        (ROOT::Math::XYZTVector    val) {fR        = val;}
-      inline void SetP        (ROOT::Math::PxPyPzMVector val) {fP        = val;}
+      inline void SetPhsdPos     (int      val) {fPHSD_POS = val;}
+      inline void SetPdg         (int      val) {fPDG      = val;}
+      inline void SetPhsdId      (int      val) {fPHSD_ID  = val;}
+      inline void SetFid         (int      val) {fFID      = val;}
+      inline void SetFsize       (int      val) {fFSIZE    = val;}
+      inline void SetProdRegion  (int      val) {fPREG     = val;}
+      inline void SetProdChannel (int      val) {fPCH      = val;}
+      inline void SetEbind       (float    val) {fEBND     = val;}
+      inline void SetR           (RTvector val) {fR        = val;}
+      inline void SetP           (PMvector val) {fP        = val;}
   };
 
 
@@ -122,28 +127,40 @@ namespace PHQMD{
 */
   class Fragment {
     private:
-      int                     fFID; ///< ID of the cluster
-      int                     fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
-      ROOT::Math::XYZTVector    fR; ///< Coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
-      ROOT::Math::PxPyPzMVector fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      int     fFID; ///< ID of the cluster
+      int     fPDG; ///< Monte Carlo particle code, [see the scheme](https://pdg.lbl.gov/2022/reviews/rpp2022-rev-monte-carlo-numbering.pdf)
+      RTvector  fR; ///< Coordinates [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      PMvector  fP; ///< Momentum [4-vector](https://root.cern.ch/doc/master/group__GenVector.html)
+      RTvector fRF; ///< Coordinates at the freeze-out
+      PMvector fPF; ///< Momentum at the freeze-out
+      bool fStable; ///< Flag for the stable clusters (must be set to 1)
+      ivec fStructure; ///< Baryons which are in this cluster
 
     public:
       Fragment();
       virtual ~Fragment();
       Fragment(const Fragment& in);
 
-      inline int                     GetPdg () const {return      fPDG;}
-      inline int                     GetFid () const {return      fFID;}
-      inline ROOT::Math::XYZTVector    GetR () const {return        fR;}
-      inline ROOT::Math::PxPyPzMVector GetP () const {return        fP;}
-      inline int                       GetA () const {return  (fPDG %   10000) /   10;}
-      inline int                       GetZ () const {return  (fPDG /   10000) % 1000;}
-      inline int                       GetL () const {return  (fPDG /10000000) %   10;}
+      inline int             GetPdg () const {return    fPDG;}
+      inline int             GetFid () const {return    fFID;}
+      inline RTvector          GetR () const {return      fR;}
+      inline PMvector          GetP () const {return      fP;}
+      inline RTvector GetFreezeoutR () const {return     fRF;}
+      inline PMvector GetFreezeoutP () const {return     fPF;}
+      inline bool          IsStable () const {return fStable;}
+      inline ivec      GetStructure () const {return fStructure;}
+      inline int               GetA () const {return  (fPDG %   10000) /   10;}
+      inline int               GetZ () const {return  (fPDG /   10000) % 1000;}
+      inline int               GetL () const {return  (fPDG /10000000) %   10;}
 
-      inline void SetPdg         (int                    val) {fPDG      = val;}
-      inline void SetFid         (int                    val) {fFID      = val;}
-      inline void SetR        (ROOT::Math::XYZTVector    val) {fR        = val;}
-      inline void SetP        (ROOT::Math::PxPyPzMVector val) {fP        = val;}
+      inline void SetPdg        (int      val) {fPDG    = val;}
+      inline void SetFid        (int      val) {fFID    = val;}
+      inline void SetR          (RTvector val) {fR      = val;}
+      inline void SetP          (PMvector val) {fP      = val;}
+      inline void SetFreezeoutR (RTvector val) {fRF     = val;}
+      inline void SetFreezeoutP (PMvector val) {fPF     = val;}
+      inline void SetStable     (bool     val) {fStable = val;}
+      inline void SetStructure  (ivec val) {fStructure = val;}
   };
 
 
@@ -158,30 +175,40 @@ namespace PHQMD{
       float                                     fB; ///< Impact parameter
       int                              fNparticles; ///< Number of particles in the event
       int                           fNparticipants; ///< Number of participants in the event
+      int                                     fNum; ///< Current NUM
+      int                                     fSub; ///< Current SUB
       std::array<float,4>                     fPsi; ///< Participant plane angle of the n-th harmonic: 2,3,4,5
       std::array<float,4>                     fEcc; ///< Eccentricity of the n-th harmonic: 2,3,4,5
-      std::vector<Particle>              particles; ///< Vector to store PHQMD::Particles
+      std::vector<Particle>              particles; ///< Vector to store PHQMD::Particle
+      std::vector<Fragment>               clusters; ///< Vector to store PHQMD::Fragment
       std::vector<std::vector<Baryon>>   mstbsteps; ///< Vector to store vectors (for the each MST time step) of PHQMD::Baryon
       std::vector<std::vector<Fragment>> mstfsteps; ///< Vector to store vectors (for the each MST time step) of PHQMD::Fragment
 
     public:
-      inline double                  GetB       () const {return             fB;}
-      inline int            GetNparticles       () const {return    fNparticles;}
-      inline int         GetNparticipants       () const {return fNparticipants;}
-      inline std::array<float,4>   GetPsi       () const {return           fPsi;}
-      inline std::array<float,4>   GetEcc       () const {return           fEcc;}
-      inline std::vector<Particle> *GetParticles ()       {return      &particles;}
+      inline double                         GetB () const {return             fB;}
+      inline int                   GetNparticles () const {return    fNparticles;}
+      inline int                GetNparticipants () const {return fNparticipants;}
+      inline int                          GetNum () const {return           fNum;}
+      inline int                          GetSub () const {return           fSub;}
+      inline std::array<float,4>          GetPsi () const {return           fPsi;}
+      inline std::array<float,4>          GetEcc () const {return           fEcc;}
+      inline std::vector<Particle> *GetParticles ()       {return     &particles;}
+      inline std::vector<Fragment> *GetClusters  ()       {return      &clusters;}
       inline std::vector<std::vector<Baryon>>   GetMstBSteps () const {return mstbsteps;}
       inline std::vector<std::vector<Fragment>> GetMstFSteps () const {return mstfsteps;}
 
-      inline void SetB	           (double               val) {fB                  = val;}
-      inline void SetNparticles    (int                  val) {fNparticles         = val;}
-      inline void SetNparticipants (int                  val) {fNparticipants      = val;}
-      inline void SetPsi           (std::array<float,4>  val) {fPsi                = val;}
-      inline void SetEcc           (std::array<float,4>  val) {fEcc                = val;}
-      inline void AddParticle      (Particle            part) {particles.push_back(part);}
-      inline void AddMstBStep      (std::vector<Baryon>   step) { mstbsteps.push_back(step);}
-      inline void AddMstFStep      (std::vector<Fragment> step) { mstfsteps.push_back(step);}
+      inline void SetB	           (double                 val) {fB                  = val;}
+      inline void SetNparticles    (int                    val) {fNparticles         = val;}
+      inline void SetNparticipants (int                    val) {fNparticipants      = val;}
+      inline void SetNum           (int                    val) {fNum                = val;}
+      inline void SetSub           (int                    val) {fSub                = val;}
+      inline void SetPsi           (std::array<float,4>    val) {fPsi                = val;}
+      inline void SetEcc           (std::array<float,4>    val) {fEcc                = val;}
+      inline void AddParticle      (Particle              part) {particles.push_back(part);}
+      inline void AddCluster       (Fragment              part) { clusters.push_back(part);}
+      inline void AddMstBStep      (std::vector<Baryon>   step) {mstbsteps.push_back(step);}
+      inline void AddMstFStep      (std::vector<Fragment> step) {mstfsteps.push_back(step);}
+      inline void RemoveCluster    (int                   part) {clusters.erase(clusters.begin() + part);}
   };
 
 
@@ -220,12 +247,12 @@ namespace PHQMD{
       float   fDTSACA; /// DTSACA, time step for SACA calculations
       int     fNTSACA; /// NTSACA, Number of SACA timesteps ( =>  tmax=tsaca+dtsaca*ntsaca must be < FINALT !)
       int    fFLGSACA; /// iflagsaca: =1 SACA(=FRIGA) analysis(+MST), =0 MST, no SACA --!!!! FRIGA
-      int        fYuk; /// tageyuk=1  ! if Yukawa potential requested in SACA       
-      int        fAsy; /// tageasy=1  ! if asymmetry energy requested in SACA 
-      int       fPair; /// tagepair=1 ! tructure effects (pairing,...) requested in SACA 
+      int        fYuk; /// tageyuk=1  ! if Yukawa potential requested in SACA
+      int        fAsy; /// tageasy=1  ! if asymmetry energy requested in SACA
+      int       fPair; /// tagepair=1 ! tructure effects (pairing,...) requested in SACA
       int       fCoul; /// tagecoul=0 ! activates the coulomb energy for fragment selection
-      float     fAsy0; /// vasy0=23.3 ! asymmetry potential energy at normal density (MeV) in SACA 
-      float    fEPair; /// eta_pairing=0.0 ! pairing potential exponant (0.->only forbids unbound isotopes, 1., 0.65, 0.35 or 0.25) in SACA 
+      float     fAsy0; /// vasy0=23.3 ! asymmetry potential energy at normal density (MeV) in SACA
+      float    fEPair; /// eta_pairing=0.0 ! pairing potential exponant (0.->only forbids unbound isotopes, 1., 0.65, 0.35 or 0.25) in SACA
       int        fEOS; /// iqmdeos  ! EoS for QMD option IPHQMD=1 ; =0: hard EOS without M.D.I; =1 soft EoS
       int    fResSACA; /// IFLAG_Res_SACA ! =1 include ALL resonances with their decay to SACA; =2 - only nucleons; =3 nucleons and hyperons
       int    fWigDens; /// IfragWigDen  ! =0: no; =1 yes, light clusters formation according to the Wigner density
