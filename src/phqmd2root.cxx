@@ -285,9 +285,7 @@ int main(int argc, char* argv[]){
 
   for (int iterEvt = 0; iterEvt < NumOutEvents; ++iterEvt){
     Event *event = &events -> at(iterEvt);
-    //~ printf("Event: %4d\n", iterEvt);
     for (int iterStep = 0; iterStep < steps_map[iterEvt].size(); ++iterStep){
-      //~ if (iterEvt == 322) printf(" ----- Step: %4d, stored clusters: %d\n", iterStep, event -> GetClusters() -> size());
       std::vector<Fragment> mstfstep;
       std::vector<Fragment> stable_clusters_array;
       event -> AddMstBStep(timesteps -> at(steps_map[iterEvt][iterStep]));
@@ -326,6 +324,7 @@ int main(int argc, char* argv[]){
         Y /= M;
         Z /= M;
         cl.SetR(ROOT::Math::XYZTVector(X, Y, Z, T));
+        cl.SetStructure(val);
         mstfstep.push_back(cl);
       }
 
